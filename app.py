@@ -145,10 +145,10 @@ if st.button("Enviar reporte"):
 
         mensaje_picos += f"<b>{fuente} ↓</b>\n\n"
 
-    for medio, url, texto in lista:
-        mensaje_picos += formato_publicacion(medio, url, texto)
+        for medio, url, texto in lista:
+            mensaje_picos += formato_publicacion(medio, url, texto)
 
-    mensaje_picos += "\n"
+        mensaje_picos += "\n"
 
     # enviar header
     requests.post(url_api, data={
