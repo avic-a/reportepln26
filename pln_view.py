@@ -19,7 +19,7 @@ def pln_ui():
     # ======================
     # FUENTES
     # ======================
-    url_api = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    url_api = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     st.subheader("Fuentes")
 
     fuentes = {}
@@ -172,7 +172,7 @@ def pln_ui():
 
         # imagen 1
         if img1:
-            requests.post(f"https://api.telegram.org/bot{TOKEN}/sendPhoto",
+            requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
                           data={"chat_id": CHAT_ID},
                           files={"photo": img1})
 
@@ -186,7 +186,7 @@ def pln_ui():
 
         # imagen 2
         if img2:
-            requests.post(f"https://api.telegram.org/bot{TOKEN}/sendPhoto",
+            requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
                           data={"chat_id": CHAT_ID},
                           files={"photo": img2})
 
