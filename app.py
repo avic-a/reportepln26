@@ -101,7 +101,7 @@ if st.button("Enviar reporte"):
 
     # MENSAJE PRINCIPAL
     mensaje = ""
-    mensaje += "<b>FUENTES COMPARTIDAS &gt; PLN 👨🏻‍💼</b>\n\n"
+    mensaje += "<b>FUENTES COMPARTIDAS &gt; PLN 👨🏻‍💼</b>\n"
 
 # 🔥 ordenar de mayor a menor por porcentaje
     fuentes_ordenadas = sorted(
@@ -116,20 +116,20 @@ if st.button("Enviar reporte"):
     for red, (p, m) in fuentes_ordenadas:
         mensaje += f"<b>{red}:</b> {p}%, {m} menciones\n"
 
-    mensaje += "\n<b>Menciones con mayores puntos de influencia:</b>\n\n"
+    mensaje += "\n<b>Menciones con mayores puntos de influencia:</b>\n"
 
     # FACEBOOK
-    mensaje += "<b>Facebook ↓</b>\n\n"
+    mensaje += "<b>Facebook ↓</b>\n"
     for medio, url, texto in facebook:
         mensaje += formato_publicacion(medio, url, texto)
 
     # TWITTER
-    mensaje += "\n<b>Twitter ↓</b>\n\n"
+    mensaje += "\n<b>Twitter ↓</b>\n"
     for medio, url, texto in twitter:
         mensaje += formato_publicacion(medio, url, texto)
 
     # PORTALES
-    mensaje += "\n<b>Portales ↓</b>\n\n"
+    mensaje += "\n<b>Portales ↓</b>\n"
     for medio, url, texto in portales:
         mensaje += formato_publicacion(medio, url, texto)
 
@@ -137,9 +137,9 @@ if st.button("Enviar reporte"):
     # PICOS AGRUPADOS
     # ======================
 
-    mensaje_picos = "<b>MENCIONES EN EL TIEMPO POR FUENTE &gt; PLN👨🏻‍💼</b>\n\n"
+    mensaje_picos = "<b>MENCIONES EN EL TIEMPO POR FUENTE &gt; PLN👨🏻‍💼</b>\n"
 
-    mensaje_picos += "Respecto a los picos de tendencia de las menciones por fuente, se registraron los siguientes comportamientos:\n\n"
+    mensaje_picos += "Respecto a los picos de tendencia de las menciones por fuente, se registraron los siguientes comportamientos:\n"
 
     # 🔥 Agrupar por fuente
     picos_agrupados = {}
@@ -152,7 +152,7 @@ if st.button("Enviar reporte"):
     # 🔥 Imprimir por bloque (como tu reporte)
     for fuente, lista in picos_agrupados.items():
 
-        mensaje_picos += f"<b>{fuente} ↓</b>\n\n"
+        mensaje_picos += f"<b>{fuente} ↓</b>\n"
 
         for medio, url, texto in lista:
             mensaje_picos += formato_publicacion(medio, url, texto)
