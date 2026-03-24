@@ -1,7 +1,11 @@
 import streamlit as st
 from telegram_builder import build_from_template, split_message, send_to_telegram
 from templates import TEMPLATES
-from config import BOT_TOKEN, CHAT_ID
+import streamlit as st
+import os
+
+BOT_TOKEN = st.secrets.get("BOT_TOKEN") or os.getenv("BOT_TOKEN")
+CHAT_ID = st.secrets.get("CHAT_ID") or os.getenv("CHAT_ID")
 
 def builder_ui():
 
