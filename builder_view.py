@@ -1,7 +1,6 @@
 import streamlit as st
 from telegram_builder import build_from_template, split_message, send_to_telegram
 from templates import TEMPLATES
-import streamlit as st
 import os
 
 BOT_TOKEN = st.secrets.get("BOT_TOKEN") or os.getenv("BOT_TOKEN")
@@ -23,17 +22,18 @@ def builder_ui():
     menciones = st.text_input("Menciones")
 
     st.subheader("Líneas de discusión")
-    lineas = st.text_area("Una por línea", key="lineas").split("\n")
+    lineas = st.text_area("Una por línea", key="builder_lineas").split("\n")
 
     st.subheader("Citas")
-    citas = st.text_area("Una por línea", key="citas").split("\n")
+    citas = st.text_area("Una por línea", key="builder_citas").split("\n")
 
     st.subheader("Autores")
 
     autores_raw = st.text_area(
         "Formato: nombre | url | descripción",
-        key="autores"
+        key="builder_autores"
     )
+
     autores = []
     for linea in autores_raw.split("\n"):
         if "|" in linea:
