@@ -103,8 +103,17 @@ if st.button("Enviar reporte"):
     mensaje = ""
     mensaje += "<b>FUENTES COMPARTIDAS &gt; PLN 👨🏻‍💼</b>\n\n"
 
-    for red in fuentes:
-        p, m = fuentes[red]
+# 🔥 ordenar de mayor a menor por porcentaje
+    fuentes_ordenadas = sorted(
+        fuentes.items(),
+        key=lambda x: (
+        float(x[1][0]) if x[1][0] else 0,
+        int(x[1][1]) if x[1][1] else 0
+    ),
+        reverse=True
+)
+
+    for red, (p, m) in fuentes_ordenadas:
         mensaje += f"<b>{red}:</b> {p}%, {m} menciones\n"
 
     mensaje += "\n<b>Menciones con mayores puntos de influencia:</b>\n\n"
