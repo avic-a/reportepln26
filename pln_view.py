@@ -1,7 +1,9 @@
-import streamlit as st
 import requests
+import streamlit as st
 import os
-from config import BOT_TOKEN, CHAT_ID
+
+BOT_TOKEN = st.secrets.get("BOT_TOKEN") or os.getenv("BOT_TOKEN")
+CHAT_ID = st.secrets.get("CHAT_ID") or os.getenv("CHAT_ID")
 
 def pln_ui():
     # todo tu código original
