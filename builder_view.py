@@ -23,17 +23,17 @@ def builder_ui():
     menciones = st.text_input("Menciones")
 
     st.subheader("Líneas de discusión")
-    lineas = st.text_area("Una por línea").split("\n")
+    lineas = st.text_area("Una por línea", key="lineas").split("\n")
 
     st.subheader("Citas")
-    citas = st.text_area("Una por línea").split("\n")
+    citas = st.text_area("Una por línea", key="citas").split("\n")
 
     st.subheader("Autores")
 
     autores_raw = st.text_area(
-        "Formato: nombre | url | descripción"
+        "Formato: nombre | url | descripción",
+        key="autores"
     )
-
     autores = []
     for linea in autores_raw.split("\n"):
         if "|" in linea:
