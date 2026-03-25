@@ -112,10 +112,10 @@ def builder_ui():
         "lineas": [l for l in lineas if l.strip()],
         "citas": citas,
         "autores": autores,
-        "citas_titulo": f"<b>{citas_titulo}</b>" if citas_titulo else "",
-        "citas_desc": citas_desc.strip(),
-        "autores_titulo": f"<b>{autores_titulo}</b>" if autores_titulo else "",
-        "autores_desc": autores_desc.strip()
+        "citas_titulo": citas_titulo,
+        "citas_desc": citas_desc,
+        "autores_titulo": autores_titulo,
+        "autores_desc": autores_desc
     }
     # =========================
     # PREVIEW
