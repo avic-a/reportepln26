@@ -131,11 +131,15 @@ def builder_ui():
     # =========================
     # ENVIAR
     # =========================
-    if st.button("🚀 Enviar a Telegram"):
+  if st.button("🚀 Enviar a Telegram"):
         resultado = build_from_template(template_name, data, TEMPLATES)
         partes = split_message(resultado)
 
         for parte in partes:
-            send_to_telegram(parte, BOT_TOKEN, CHAT_ID)
+            res = send_to_telegram(parte, BOT_TOKEN, CHAT_ID)
+            # 👇 NUEVO: Validar si Telegram aceptó el mensaje
+            if not res.get("ok"):
+                st.error(f"Error de Telegram: {res.get('description')}")
+                st.stop() # Detiene la ejecución si hay error
 
         st.success("✅ Enviado correctamente")
