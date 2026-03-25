@@ -131,7 +131,7 @@ def builder_ui():
     # =========================
     # ENVIAR
     # =========================
-  if st.button("🚀 Enviar a Telegram"):
+    if st.button("🚀 Enviar a Telegram"):
         resultado = build_from_template(template_name, data, TEMPLATES)
         partes = split_message(resultado)
 
