@@ -18,17 +18,23 @@ def send_to_telegram(text, token, chat_id):
     response = requests.post(url, json=payload)
     return response.json()
 
-def parse_links(text):
-    # Convierte [texto](url) → <a href="url">texto</a>
-    pattern = r"\[([^\]]+)\]\((https?://[^\)]+)\)"
+def parse_custom_links(text):
+    parts = text.split("|")
 
-    def replacer(match):
-        label = html.escape(match.group(1))
-        url = match.group(2)
-        return f"<a href='{url}'>{label}</a>"
+    for part in parts:
+        part = part.strip()
 
-    return re.sub(pattern, replacer, text)
+        if " - " in part:
+            fragment, url = part.split(" - ", 1)
+            fragment = fragment.strip()
+            url = url.strip()
 
+            link_html = f"<a href='{url}'>{html.escape(fragment)}</a>"
+
+            # reemplaza solo la primera coincidencia
+            text = re.sub(re.escape(fragment), link_html, text, count=1)
+
+    return text
 # =========================
 # BASE BLOCK
 # =========================
