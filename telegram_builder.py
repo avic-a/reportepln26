@@ -19,9 +19,6 @@ def send_to_telegram(text, BOT_TOKEN, CHAT_ID):
     response = requests.post(url, json=payload)
     return response.json()
 
-    response = requests.post(url, json=payload)
-    return response.json()
-
 def parse_custom_links(text):
     pattern = r"\[([^\]]+)\]\s*-\s*(https?://\S+)"
 
@@ -47,7 +44,7 @@ class Title(Block):
         self.text = html.escape(text)
 
     def render(self):
-        return f"{self.text}</b>\n"
+        return f"<b>{self.text}</b>\n"
 
 
 class Subtitle(Block):
