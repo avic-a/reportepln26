@@ -192,7 +192,7 @@ def build_from_template(template_name, data, templates):
         # =========================
         # 🔥 Saltar bloques vacíos
         # =========================
-        if block_type in ["arrow_list", "bullet_list", "quote_list", "author_list"] and not content:
+        if block_type in ["arrow_list", "bullet_list", "quote_list", "author_list", "text", "subtitle"] and not content:
             continue
 
         # =========================
