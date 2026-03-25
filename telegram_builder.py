@@ -6,6 +6,22 @@ import html
 # TELEGRAM SEND
 # =========================
 
+def send_to_telegram(text, BOT_TOKEN, CHAT_ID):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": text,
+        "parse_mode": "HTML",
+        "disable_web_page_preview": True
+    }
+
+    response = requests.post(url, json=payload)
+    return response.json()
+
+    response = requests.post(url, json=payload)
+    return response.json()
+    
 def parse_custom_links(text):
     pattern = r"\[([^\]]+)\]\s*-\s*(https?://\S+)"
 
