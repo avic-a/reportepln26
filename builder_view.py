@@ -26,14 +26,14 @@ def builder_ui():
     # LÍNEAS
     # =========================
     st.subheader("Líneas de discusión")
-    lineas = st.text_area("Una por línea", key="builder_lineas").split("\n")
+    lineas = st.text_area("Esta sección permite incluir lineas en fragmentos del texto el formato es: Texto [texto con url] - https://fb.com. Hacer intro cada que haya una nueva linea", key="builder_lineas").split("\n")
 
     # =========================
     # CITAS
     # =========================
-    st.subheader("Citas")
+    st.subheader("Texto en lista y con Vínculo")
 
-    num_citas = st.number_input("Número de citas", 1, 10, 3)
+    num_citas = st.number_input("Número de elementos", 1, 10, 3)
 
     citas = []
 
@@ -41,7 +41,7 @@ def builder_ui():
         col1, col2 = st.columns([2, 3])
 
         with col1:
-            texto = st.text_input(f"Cita {i+1}", key=f"builder_cita_texto_{i}")
+            texto = st.text_input(f"Texto con vínculo {i+1}", key=f"builder_cita_texto_{i}")
 
         with col2:
             url = st.text_input(f"URL {i+1}", key=f"builder_cita_url_{i}")
@@ -55,10 +55,10 @@ def builder_ui():
     # =========================
     # AUTORES
     # =========================
-    st.subheader("Autores")
+    st.subheader("Texto en lista con Vínculo y descripción")
 
     num_autores = st.number_input(
-        "Número de autores",
+        "Número de elementos",
         1, 15, 3,
         key="builder_num_autores"
     )
@@ -69,7 +69,7 @@ def builder_ui():
         col1, col2, col3 = st.columns([2, 3, 4])
 
         with col1:
-            nombre = st.text_input(f"Nombre {i+1}", key=f"builder_autor_nombre_{i}")
+            nombre = st.text_input(f"Texto con vínculo {i+1}", key=f"builder_autor_nombre_{i}")
 
         with col2:
             url = st.text_input(f"URL {i+1}", key=f"builder_autor_url_{i}")
