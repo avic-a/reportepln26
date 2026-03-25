@@ -93,9 +93,14 @@ def builder_ui():
         "menciones": menciones,
         "lineas": [l for l in lineas if l.strip()],
         "citas": citas,
-        "autores": autores
+        "autores": autores,
+    
+        # 👇 NUEVO
+        "citas_titulo": citas_titulo,
+        "citas_desc": citas_desc,
+        "autores_titulo": autores_titulo,
+        "autores_desc": autores_desc
     }
-
     # =========================
     # PREVIEW
     # =========================
