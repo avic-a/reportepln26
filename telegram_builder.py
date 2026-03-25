@@ -107,20 +107,21 @@ class AuthorList(Block):
         for a in self.authors:
             name = html.escape(a.get("name", ""))
             url = a.get("url", "")
-            desc = html.escape(a.get("desc", ""))
+            desc = html.escape(a.get("desc", "").strip())
 
             if url:
-                linea = f"• <a href='{url}'>{name}</a>"
+                author_text = f"<a href='{url}'>{name}</a>"
             else:
-                linea = f"• {name}"
+                author_text = name
 
             if desc:
-                linea += f" - {desc}"
+                line = f"• {author_text} - {desc}"
+            else:
+                line = f"• {author_text}"
 
-            output.append(linea)
+            output.append(line)
 
         return "\n".join(output) + "\n"
-
 
 # =========================
 # QUOTES
