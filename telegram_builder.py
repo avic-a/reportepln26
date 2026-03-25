@@ -76,6 +76,7 @@ class BulletList(Block):
         ]) + "\n"
 
 
+# telegram_builder.py (Línea 65 aprox)
 class ArrowList(Block):
     def __init__(self, items):
         self.items = items
@@ -84,13 +85,13 @@ class ArrowList(Block):
         output = []
 
         for item in self.items:
-            item = parse_custom_links(item)
-
-            # ⚠️ NO hacer escape completo aquí
-            # solo escapar lo que NO sea link
-            item = item.replace("&", "&amp;")
-
-            output.append(f"→ {item}")
+            # 👇 1. Escapar todo primero (convierte < y > en caracteres seguros)
+            item_seguro = html.escape(item) 
+            
+            # 👇 2. Convertir los links personalizados (ya con formato HTML)
+            item_final = parse_custom_links(item_seguro)
+            
+            output.append(f"→ {item_final}")
 
         return "\n\n".join(output) + "\n"
 
@@ -193,7 +194,7 @@ def build_from_template(template_name, data, templates):
         # =========================
         # 🔥 Saltar bloques vacíos
         # =========================
-        if block_type in ["arrow_list", "bullet_list", "quote_list", "author_list", "text", "subtitle"] and not content:
+        if block_type in ["title","arrow_list", "bullet_list", "quote_list", "author_list", "text", "subtitle"] and not content:
             continue
 
         # =========================
