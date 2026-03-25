@@ -41,10 +41,10 @@ class Block:
 # =========================
 class Title(Block):
     def __init__(self, text):
-        self.text = html.escape(text)
+        self.text = text 
 
     def render(self):
-        return f"<b>{self.text}</b>\n"
+        return f"{self.text}\n"
 
 
 class Subtitle(Block):
@@ -60,6 +60,8 @@ class TextBlock(Block):
         self.text = html.escape(text)
 
     def render(self):
+        if not self.text.strip():
+            return ""
         return f"{self.text}\n"
 
 
