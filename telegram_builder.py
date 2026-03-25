@@ -5,8 +5,8 @@ import html
 # =========================
 # TELEGRAM SEND
 # =========================
-def send_to_telegram(text, token, chat_id):
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
+def send_to_telegram(text, bot_token, chat_id):
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
     payload = {
         "chat_id": chat_id,
