@@ -21,14 +21,14 @@ def send_to_telegram(text, BOT_TOKEN, CHAT_ID):
 
     response = requests.post(url, json=payload)
     return response.json()
-    
+
 def parse_custom_links(text):
     pattern = r"\[([^\]]+)\]\s*-\s*(https?://\S+)"
 
     def replacer(match):
         fragment = html.escape(match.group(1))
-        url = match.group(2)
-        return f"<a href='{url}'>{fragment}</a>"
+        url = html.escape(match.group(2))
+        return f"<a href=\"{url}\">{fragment}</a>"
 
     return re.sub(pattern, replacer, text)
 # =========================
@@ -88,10 +88,10 @@ class ArrowList(Block):
 
         for item in self.items:
             item = parse_custom_links(item)
-            item = html.escape(item, quote=False)
 
-            # reactivar <a>
-            item = item.replace("&lt;a", "<a").replace("&lt;/a&gt;", "</a>").replace("&gt;", ">")
+            # ⚠️ NO hacer escape completo aquí
+            # solo escapar lo que NO sea link
+            item = item.replace("&", "&amp;")
 
             output.append(f"→ {item}")
 
