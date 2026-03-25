@@ -19,22 +19,14 @@ def send_to_telegram(text, token, chat_id):
     return response.json()
 
 def parse_custom_links(text):
-    parts = text.split("|")
+    pattern = r"\[([^\]]+)\]\s*-\s*(https?://\S+)"
 
-    for part in parts:
-        part = part.strip()
+    def replacer(match):
+        fragment = html.escape(match.group(1))
+        url = match.group(2)
+        return f"<a href='{url}'>{fragment}</a>"
 
-        if " - " in part:
-            fragment, url = part.split(" - ", 1)
-            fragment = fragment.strip()
-            url = url.strip()
-
-            link_html = f"<a href='{url}'>{html.escape(fragment)}</a>"
-
-            # reemplaza solo la primera coincidencia
-            text = re.sub(re.escape(fragment), link_html, text, count=1)
-
-    return text
+    return re.sub(pattern, replacer, text)
 # =========================
 # BASE BLOCK
 # =========================
@@ -91,7 +83,7 @@ class ArrowList(Block):
         output = []
 
         for item in self.items:
-            item = parse_custom_links(item)  # 👈 NUEVO
+            item = parse_custom_links(item)
             item = html.escape(item, quote=False)
 
             # reactivar <a>
