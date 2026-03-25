@@ -1,4 +1,5 @@
 import requests
+import re
 import html
 
 # =========================
@@ -11,11 +12,22 @@ def send_to_telegram(text, token, chat_id):
         "chat_id": chat_id,
         "text": text,
         "parse_mode": "HTML"
+        "disable_web_page_preview": True 
     }
 
     response = requests.post(url, json=payload)
     return response.json()
 
+def parse_links(text):
+    # Convierte [texto](url) → <a href="url">texto</a>
+    pattern = r"\[([^\]]+)\]\((https?://[^\)]+)\)"
+
+    def replacer(match):
+        label = html.escape(match.group(1))
+        url = match.group(2)
+        return f"<a href='{url}'>{label}</a>"
+
+    return re.sub(pattern, replacer, text)
 
 # =========================
 # BASE BLOCK
@@ -127,9 +139,9 @@ class QuoteList(Block):
                 url = q.get("url", "")
 
                 if url:
-                    output.append(f"• <a href='{url}'>{texto}</a>")
+                    output.append(f"- <a href='{url}'>{texto}</a>")
                 else:
-                    output.append(f"• {texto}")
+                    output.append(f"- {texto}")
             else:
                 output.append(f"• {html.escape(str(q))}")
 
