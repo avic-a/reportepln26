@@ -70,7 +70,7 @@ class ArrowList(Block):
         self.items = items
 
     def render(self):
-        return "\n".join([
+        return "\n\n".join([
             f"→ {html.escape(str(item))}" for item in self.items
         ]) + "\n"
 
@@ -83,10 +83,24 @@ class AuthorList(Block):
         self.authors = authors
 
     def render(self):
-        return "\n".join([
-            f"- <a href='{a['url']}'>{html.escape(a['name'])}</a> - {html.escape(a['desc'])}"
-            for a in self.authors
-        ]) + "\n"
+        output = []
+
+        for a in self.authors:
+            name = html.escape(a.get("name", ""))
+            url = a.get("url", "")
+            desc = html.escape(a.get("desc", ""))
+
+            if url:
+                linea = f"• <a href='{url}'>{name}</a>"
+            else:
+                linea = f"• {name}"
+
+            if desc:
+                linea += f" - {desc}"
+
+            output.append(linea)
+
+        return "\n".join(output) + "\n"
 
 
 # =========================
@@ -105,10 +119,21 @@ class QuoteList(Block):
         self.quotes = quotes
 
     def render(self):
-        return "\n".join([
-            f"💬 <i>“{html.escape(q)}”</i>"
-            for q in self.quotes
-        ]) + "\n"
+        output = []
+
+        for q in self.quotes:
+            if isinstance(q, dict):
+                texto = html.escape(q.get("text", ""))
+                url = q.get("url", "")
+
+                if url:
+                    output.append(f"• <a href='{url}'>{texto}</a>")
+                else:
+                    output.append(f"• {texto}")
+            else:
+                output.append(f"• {html.escape(str(q))}")
+
+        return "\n".join(output) + "\n"
 
 
 # =========================
