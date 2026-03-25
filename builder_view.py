@@ -33,6 +33,15 @@ def builder_ui():
     # =========================
     st.subheader("Texto en lista y con Vínculo")
 
+    citas_titulo = st.text_input(
+        "Título de sección",
+        value="Citas clave"
+    )
+    
+    citas_desc = st.text_area(
+        "Descripción (opcional)",
+        key="citas_desc"
+    )
     num_citas = st.number_input("Número de elementos", 1, 10, 3)
 
     citas = []
@@ -56,7 +65,16 @@ def builder_ui():
     # AUTORES
     # =========================
     st.subheader("Texto en lista con Vínculo y descripción")
-
+    
+    autores_titulo = st.text_input(
+        "Título de sección",
+        value="Autores"
+    )
+    
+    autores_desc = st.text_area(
+        "Descripción (opcional)",
+        key="autores_desc"
+    )
     num_autores = st.number_input(
         "Número de elementos",
         1, 15, 3,
