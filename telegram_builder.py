@@ -88,9 +88,18 @@ class ArrowList(Block):
         self.items = items
 
     def render(self):
-        return "\n\n".join([
-            f"→ {html.escape(str(item))}" for item in self.items
-        ]) + "\n"
+        output = []
+
+        for item in self.items:
+            item = parse_custom_links(item)  # 👈 NUEVO
+            item = html.escape(item, quote=False)
+
+            # reactivar <a>
+            item = item.replace("&lt;a", "<a").replace("&lt;/a&gt;", "</a>").replace("&gt;", ">")
+
+            output.append(f"→ {item}")
+
+        return "\n\n".join(output) + "\n"
 
 
 # =========================
