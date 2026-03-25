@@ -5,11 +5,12 @@ import html
 # =========================
 # TELEGRAM SEND
 # =========================
-def send_to_telegram(text, bot_token, chat_id):
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+
+def send_to_telegram(text, BOT_TOKEN, CHAT_ID):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
     payload = {
-        "chat_id": chat_id,
+        "CHAT_ID": CHAT_ID,
         "text": text,
         "parse_mode": "HTML",
         "disable_web_page_preview":True 
