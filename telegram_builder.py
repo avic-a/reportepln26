@@ -43,7 +43,7 @@ class Title(Block):
         self.text = html.escape(text)
 
     def render(self):
-        return f"<b>{self.text}</b>\n"
+        return f"{self.text}</b>\n"
 
 
 class Subtitle(Block):
